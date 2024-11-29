@@ -147,7 +147,7 @@ class _CertainAppState extends State<CertainApp> {
                   ),
                   buildStyledContainer(
                     image: 'assets/GMS clac.png', // Replace with your image path
-                    text: "Bye World",
+                    text: "Bye aliiiiiiiiiiii",
                     color: Colors.white,
                     onTap: () {
                       Get.to(SixthPage());
