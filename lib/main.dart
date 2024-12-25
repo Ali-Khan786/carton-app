@@ -34,16 +34,14 @@ class _CertainAppState extends State<CertainApp> {
       debugShowCheckedModeBanner: false,
       title: 'Certain App',
       theme: ThemeData(
-        // Set background color to off-white
         scaffoldBackgroundColor: Colors.grey[200],
-        primaryColor: Color(0xFF673AB7), // Primary purple color
-        secondaryHeaderColor: Color(0xFFD1C4E9), // Secondary purple color
-        fontFamily: 'Roboto', // Or your preferred font
+        primaryColor: Color(0xFF673AB7),
+        secondaryHeaderColor: Color(0xFFD1C4E9),
+        fontFamily: 'Roboto',
       ),
       home: Scaffold(
         appBar: AppBar(
           title: Text('Carton App'),
-          // Set app bar color to very light green
           backgroundColor: Colors.green[100],
           centerTitle: true,
           leading: Builder(
@@ -59,26 +57,79 @@ class _CertainAppState extends State<CertainApp> {
         ),
         drawer: Drawer(
           child: ListView(
-            // Add your drawer items here
             children: [
-              DrawerHeader(
-                child: Text('Drawer Header'),
+              UserAccountsDrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Colors.white,
+                ),
+                currentAccountPicture: Icon(
+                  Icons.inventory_2_rounded,
+                  size: 50,
+                  color: Colors.amber,
+                ),
+                accountName: Text(
+                  'Paper and Packages',
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                ),
+                accountEmail: Text(
+                  'AlphaSoftware',
+                  style: TextStyle(color: Colors.black54),
                 ),
               ),
               ListTile(
-                title: Text('Item 1'),
+                leading: Icon(Icons.shopping_cart, color: Colors.brown),
+                title: Text('Corrugated Carton Cost'),
                 onTap: () {
-                  // Handle item 1 tap
-                  Navigator.pop(context); // Close the drawer
+                  Get.to(FirstPage());
                 },
               ),
               ListTile(
-                title: Text('Item 2'),
+                leading: Icon(Icons.calculate, color: Colors.black54),
+                title: Text('Sheet/Stiffener Cost'),
                 onTap: () {
-                  // Handle item 2 tap
-                  Navigator.pop(context); // Close the drawer
+                  Get.to(FourthPage());
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.assignment, color: Colors.blueAccent),
+                title: Text('GSM Calc of Corru. Roll'),
+                onTap: () {
+                  Get.to(SixthPage());
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.cut, color: Colors.grey),
+                title: Text('Deckle Slit Combinations'),
+                onTap: () {
+                  Get.to(SecondPage());
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.circle_outlined, color: Colors.orange),
+                title: Text('Paper Roll Dia to Weight'),
+                onTap: () {
+                  Get.to(ThirdPage());
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.straighten, color: Colors.black),
+                title: Text('Sheet Size to Weight'),
+                onTap: () {
+                  Get.to(FifthPage());
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.layers, color: Colors.grey),
+                title: Text('Reel Weight to Sheets'),
+                onTap: () {
+                  // Handle navigation if necessary
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.settings, color: Colors.red),
+                title: Text('Setting'),
+                onTap: () {
+                  Get.to(SeventhPage());
                 },
               ),
             ],
@@ -92,7 +143,7 @@ class _CertainAppState extends State<CertainApp> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   buildStyledContainer(
-                    image: 'assets/cardboard box.png', // Replace with your image path
+                    image: 'assets/cardboard box.png',
                     text: "Carton Cost",
                     color: Colors.white,
                     onTap: () {
@@ -100,7 +151,7 @@ class _CertainAppState extends State<CertainApp> {
                     },
                   ),
                   buildStyledContainer(
-                    image: 'assets/cardboard cutting.png', // Replace with your image path
+                    image: 'assets/cardboard cutting.png',
                     text: "Slit Comb.",
                     color: Colors.white,
                     onTap: () {
@@ -109,22 +160,21 @@ class _CertainAppState extends State<CertainApp> {
                   ),
                 ],
               ),
-
               SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   buildStyledContainer(
-                    image: 'assets/cardboard roll.png', // Replace with your image path
-                    text: "Roll Cost"
+                    image: 'assets/cardboard roll.png',
+                    text: "Roll Cost",
                     color: Colors.white,
                     onTap: () {
                       Get.to(ThirdPage());
                     },
                   ),
                   buildStyledContainer(
-                    image: 'assets/cardboard stiffenar.png', // Replace with your image path
-                    text: "fuck u",
+                    image: 'assets/cardboard stiffenar.png',
+                    text: "Stiffner Cost",
                     color: Colors.white,
                     onTap: () {
                       Get.to(FourthPage());
@@ -132,22 +182,21 @@ class _CertainAppState extends State<CertainApp> {
                   ),
                 ],
               ),
-
               SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   buildStyledContainer(
-                    image: 'assets/Weight.png', // Replace with your image path
-                    text: "Hello World",
+                    image: 'assets/Weight.png',
+                    text: "Weight.calc",
                     color: Colors.white,
                     onTap: () {
                       Get.to(FifthPage());
                     },
                   ),
                   buildStyledContainer(
-                    image: 'assets/GMS clac.png', // Replace with your image path
-                    text: "Bye World",
+                    image: 'assets/GMS clac.png',
+                    text: "GSM Calc",
                     color: Colors.white,
                     onTap: () {
                       Get.to(SixthPage());
@@ -155,14 +204,13 @@ class _CertainAppState extends State<CertainApp> {
                   ),
                 ],
               ),
-
               SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   buildStyledContainer(
-                    image: 'assets/settings.png', // Replace with your image path
-                    text: "Bye World",
+                    image: 'assets/settings.png',
+                    text: "Settings",
                     color: Colors.white,
                     onTap: () {
                       Get.to(SeventhPage());
@@ -212,7 +260,7 @@ class _CertainAppState extends State<CertainApp> {
             Text(
               text,
               style: TextStyle(
-                color: Colors.black, // Adjust text color as needed
+                color: Colors.black,
               ),
             ),
           ],

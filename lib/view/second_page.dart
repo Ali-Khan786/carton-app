@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class SecondPage extends StatelessWidget {
+class SecondPage extends StatefulWidget {
+  @override
+  _SecondPageState createState() => _SecondPageState();
+}
+
+class _SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,8 +110,8 @@ class SecondPage extends StatelessWidget {
   Widget _buildSectionHeader(String title) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.green[100],
-        borderRadius: BorderRadius.circular(10)
+          color: Colors.green[100],
+          borderRadius: BorderRadius.circular(10)
       ),
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: Text(
@@ -158,4 +163,3 @@ class SecondPage extends StatelessWidget {
     );
   }
 }
-
