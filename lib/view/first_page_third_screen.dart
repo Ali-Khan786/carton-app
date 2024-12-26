@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import 'first_page.dart';
 
 
 
@@ -101,6 +105,13 @@ class _PriceCalculatorUIState extends State<PriceCalculatorUI> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+              ElevatedButton(
+                onPressed: () {
+                  Get.to(FirstPage());
+                },
+                child: Text('BACK'),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.green[100]),
+              ),
               ElevatedButton(
                 onPressed: () {
                   // Show functionality

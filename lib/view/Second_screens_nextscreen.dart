@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import 'PageBController.dart';
+import 'first_page.dart';
+import 'first_page_second_screen.dart';
 
 
 class FpSp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -23,8 +30,21 @@ class CartonCalculatorUI extends StatefulWidget {
 }
 
 class _CartonCalculatorUIState extends State<CartonCalculatorUI> {
+  bool _isReadOnly = true;
+  FocusNode _focusNode = FocusNode(); // Create a FocusNode
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(() {
+      if (_isReadOnly && _focusNode.hasFocus) {
+        _focusNode.unfocus(); // Remove focus if readOnly is true
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
+    final dataController = Get.find<FPSController>();
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -38,10 +58,10 @@ class _CartonCalculatorUIState extends State<CartonCalculatorUI> {
             padding: EdgeInsets.all(8.0),
             child: Column(
               children: [
-                buildRowWithTwoFields('Ply', '7'),
-                buildRowWithTwoFields('Size', '12.0x11.0x5 inch'),
-                buildRowWithTwoFields('Sheet', '48.0x16 inch'),
-                buildRowWithTwoFields('Quantity', ''),
+                buildRowWithTwoFields('Ply', "${dataController.ply.value}"),
+                buildRowWithTwoFields('Size', '${dataController.length}x${dataController.width}x${dataController.height} inch'),
+                buildRowWithTwoFields('Sheet', '${dataController.cutSize}x${dataController.rollSize} inch'),
+                buildRowWithTwoFields('Quantity', '${dataController.quantity}'),
               ],
             ),
           ),
@@ -61,13 +81,11 @@ class _CartonCalculatorUIState extends State<CartonCalculatorUI> {
                   padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      buildRowWithTwoFields('Roll 1', '15.36'),
-                      buildRowWithTwoFields('Roll 2', '16.64'),
-                      buildRowWithTwoFields('Roll 3', '17.92'),
-                      buildRowWithTwoFields('Paper', '04.36'),
-                      buildRowWithTwoFields('Silicate', '08.22'),
-                      buildRowWithTwoFields('Cost [PSI]', '0.0914'),
-                      buildRowWithTwoFields('Cost', '70.2'),
+                      buildRowWithTwoFields('Roll 1', '${dataController.rollRate}'),
+                      buildRowWithTwoFields('Paper', '${dataController.paperRate}'),
+                      buildRowWithTwoFields('Silicate', '${dataController.silicateRate}'),
+                      buildRowWithTwoFields('Cost [PSI]', '${dataController.costPSI}'),
+                      buildRowWithTwoFields('Cost', '${dataController.cost}'),
                     ],
                   ),
                 ),
@@ -82,12 +100,12 @@ class _CartonCalculatorUIState extends State<CartonCalculatorUI> {
                   padding: EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      buildRowWithTwoFields('Labour', '07.00'),
-                      buildRowWithTwoFields('Printing / Carr', '-'),
-                      buildRowWithTwoFields('Waste [1.0%]', '00.70'),
-                      buildRowWithTwoFields('Profit [15.0%]', '10.53'),
-                      buildRowWithTwoFields('Price [PSI]', '0.1051'),
-                      buildRowWithTwoFields('Price', '80.73'),
+                      buildRowWithTwoFields('Labour', '${dataController.labour}'),
+                      buildRowWithTwoFields('Printing / Carr', '${dataController.printing}'),
+                      buildRowWithTwoFields('Waste [${dataController.wastagePer}%]', '${dataController.wastage}'),
+                      buildRowWithTwoFields('Profit [${dataController.profitPer}%]', '${dataController.profit}'),
+                      buildRowWithTwoFields('Price [PSI]', '${dataController.pricePSI}'),
+                      buildRowWithTwoFields('Price', '${dataController.price}'),
                     ],
                   ),
                 ),
@@ -103,6 +121,7 @@ class _CartonCalculatorUIState extends State<CartonCalculatorUI> {
             children: [
               ElevatedButton(
                 onPressed: () {
+                  Get.back();
                   // Back button functionality
                 },
                 child: Text('BACK'),
@@ -110,31 +129,22 @@ class _CartonCalculatorUIState extends State<CartonCalculatorUI> {
                   backgroundColor: Colors.green.shade100,
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  // Copy button functionality
-                },
-                child: Text('COPY'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green.shade100,
-                ),
-              ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     // Copy button functionality
+              //   },
+              //   child: Text('COPY'),
+              //   style: ElevatedButton.styleFrom(
+              //     backgroundColor: Colors.green.shade100,
+              //   ),
+              // ),
             ],
           ),
 
           SizedBox(height: 16),
 
           // Save Button
-          ElevatedButton(
-            onPressed: () {
-              // Save button functionality
-            },
-            child: Text('SAVE'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green.shade100,
-              minimumSize: Size(double.infinity, 50), // Full width button
-            ),
-          ),
+
         ],
       ),
     );
@@ -167,6 +177,8 @@ class _CartonCalculatorUIState extends State<CartonCalculatorUI> {
           Expanded(
             flex: 3,
             child: TextField(
+              readOnly: true,
+              focusNode: _focusNode,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 contentPadding: EdgeInsets.symmetric(horizontal: 8.0),

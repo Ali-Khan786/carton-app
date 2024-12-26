@@ -138,7 +138,7 @@ class _CertainAppState extends State<CertainApp> {
         body: Center(
           child: Column(
             children: [
-              SizedBox(height: 20),
+              SizedBox(height: 200),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -150,74 +150,74 @@ class _CertainAppState extends State<CertainApp> {
                       Get.to(FirstPage());
                     },
                   ),
-                  buildStyledContainer(
-                    image: 'assets/cardboard cutting.png',
-                    text: "Slit Comb.",
-                    color: Colors.white,
-                    onTap: () {
-                      Get.to(SecondPage());
-                    },
-                  ),
+                  // buildStyledContainer(
+                  //   image: 'assets/cardboard cutting.png',
+                  //   text: "Slit Comb.",
+                  //   color: Colors.white,
+                  //   onTap: () {
+                  //     Get.to(SecondPage());
+                  //   },
+                  // ),
                 ],
               ),
               SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  buildStyledContainer(
-                    image: 'assets/cardboard roll.png',
-                    text: "Roll Cost",
-                    color: Colors.white,
-                    onTap: () {
-                      Get.to(ThirdPage());
-                    },
-                  ),
-                  buildStyledContainer(
-                    image: 'assets/cardboard stiffenar.png',
-                    text: "Stiffner Cost",
-                    color: Colors.white,
-                    onTap: () {
-                      Get.to(FourthPage());
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  buildStyledContainer(
-                    image: 'assets/Weight.png',
-                    text: "Weight.calc",
-                    color: Colors.white,
-                    onTap: () {
-                      Get.to(FifthPage());
-                    },
-                  ),
-                  buildStyledContainer(
-                    image: 'assets/GMS clac.png',
-                    text: "GSM Calc",
-                    color: Colors.white,
-                    onTap: () {
-                      Get.to(SixthPage());
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  buildStyledContainer(
-                    image: 'assets/settings.png',
-                    text: "Settings",
-                    color: Colors.white,
-                    onTap: () {
-                      Get.to(SeventhPage());
-                    },
-                  ),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //   children: [
+              //     buildStyledContainer(
+              //       image: 'assets/cardboard roll.png',
+              //       text: "Roll Cost",
+              //       color: Colors.white,
+              //       onTap: () {
+              //         Get.to(ThirdPage());
+              //       },
+              //     ),
+              //     buildStyledContainer(
+              //       image: 'assets/cardboard stiffenar.png',
+              //       text: "Stiffner Cost",
+              //       color: Colors.white,
+              //       onTap: () {
+              //         Get.to(FourthPage());
+              //       },
+              //     ),
+              //   ],
+              // ),
+              // SizedBox(height: 20),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //   children: [
+              //     buildStyledContainer(
+              //       image: 'assets/Weight.png',
+              //       text: "Weight.calc",
+              //       color: Colors.white,
+              //       onTap: () {
+              //         Get.to(FifthPage());
+              //       },
+              //     ),
+              //     buildStyledContainer(
+              //       image: 'assets/GMS clac.png',
+              //       text: "GSM Calc",
+              //       color: Colors.white,
+              //       onTap: () {
+              //         Get.to(SixthPage());
+              //       },
+              //     ),
+              //   ],
+              // ),
+              // SizedBox(height: 20),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     buildStyledContainer(
+              //       image: 'assets/settings.png',
+              //       text: "Settings",
+              //       color: Colors.white,
+              //       onTap: () {
+              //         Get.to(SeventhPage());
+              //       },
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ),

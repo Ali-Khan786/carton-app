@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_class_project/view/first_page_second_screen.dart';
 import 'package:flutter_class_project/view/first_page_third_screen.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'PageBController.dart';
 
 class FirstPage extends StatefulWidget {
   @override
@@ -10,12 +12,14 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
+  // final FirstPageController controller = Get.put(FirstPageController());
   final TextEditingController lengthCon = TextEditingController();
   final TextEditingController widthCon = TextEditingController();
   final TextEditingController heightCon = TextEditingController();
 
   final TextEditingController cutSizeCon = TextEditingController();
   final TextEditingController rollSizeCon = TextEditingController();
+  final TextEditingController quantityCon = TextEditingController();
   String unit = "inch";
   num upm = 2;
   void onTextChanged(String value) {
@@ -95,6 +99,7 @@ class _FirstPageState extends State<FirstPage> {
                     children: [
                       Expanded(
                         child: TextField(
+                          keyboardType: TextInputType.number,
                           controller: lengthCon,
                           decoration: InputDecoration(
                             labelText: "Length",
@@ -105,6 +110,7 @@ class _FirstPageState extends State<FirstPage> {
                       SizedBox(width: 8),
                       Expanded(
                         child: TextField(
+                          keyboardType: TextInputType.number,
                           controller: widthCon,
                           decoration: InputDecoration(
                             labelText: "Width",
@@ -115,6 +121,7 @@ class _FirstPageState extends State<FirstPage> {
                       SizedBox(width: 8),
                       Expanded(
                         child: TextField(
+                          keyboardType: TextInputType.number,
                           controller: heightCon,
                           onChanged: onTextChanged,
                           decoration: InputDecoration(
@@ -194,6 +201,7 @@ class _FirstPageState extends State<FirstPage> {
                     children: [
                       Expanded(
                         child: TextField(
+                          keyboardType: TextInputType.number,
                           controller: cutSizeCon,
                           decoration: InputDecoration(
                             labelText: "Cut Size",
@@ -204,6 +212,7 @@ class _FirstPageState extends State<FirstPage> {
                       SizedBox(width: 8),
                       Expanded(
                         child: TextField(
+                          keyboardType: TextInputType.number,
                           controller: rollSizeCon,
                           decoration: InputDecoration(
                             labelText: "Deckle/Roll Size",
@@ -227,11 +236,12 @@ class _FirstPageState extends State<FirstPage> {
                   ),
                   SizedBox(height: 8),
                   TextField(
+                          keyboardType: TextInputType.number,
+                    controller: quantityCon,
                     decoration: InputDecoration(
                       labelText: "Quantity",
                       border: OutlineInputBorder(),
                     ),
-                    keyboardType: TextInputType.number,
                   ),
                   SizedBox(height: 16),
 
@@ -255,43 +265,35 @@ class _FirstPageState extends State<FirstPage> {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
+                            double? length = double.tryParse(lengthCon.text);
+                            double? width = double.tryParse(widthCon.text);
+                            double? height = double.tryParse(heightCon.text);
+                            double? cutSize = double.tryParse(cutSizeCon.text);
+                            double? rollSize = double.tryParse(rollSizeCon.text);
+                            double? quantity = double.tryParse(quantityCon.text)??0.0;
+                            if (length != null && width != null && height != null&&  cutSize != null && rollSize != null) {
+                              final dataController = Get.put(FPSController());
+                              dataController.updateData(length,width,height, cutSize, rollSize, quantity);
 
+                              Get.to(() => FpSecond());
+                            }
                           },
                           child: Text("Cost Manual Machines"),
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.green[100]),
                         ),
                       ),
                       SizedBox(width: 8),
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: Text("Cost Corrugator Line"),
-                          style: ElevatedButton.styleFrom(backgroundColor: Colors.green[100]),
-                        ),
-                      ),
+                      // Expanded(
+                      //   child: ElevatedButton(
+                      //     onPressed: () {
+                      //       Get.to(FpThird());
+                      //     },
+                      //     child: Text("Cost Corrugator Line"),
+                      //     style: ElevatedButton.styleFrom(backgroundColor: Colors.green[100]),
+                      //   ),
+                      // ),
                     ],
                   ),
-
-                  SizedBox(width: 8, height: 10,),
-                  Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          Get.to(FpSecond());
-                        },
-                        child: Text("2nd page"),
-                      ),
-
-                      ElevatedButton(
-                        onPressed: () {
-                          Get.to(FpThird());
-                        },
-                        child: Text("3rd page"),
-                      ),
-                    ],
-                  ),
-
-
                 ],
               ),
             ),
