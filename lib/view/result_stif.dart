@@ -7,7 +7,7 @@ import 'first_page.dart';
 import 'first_page_second_screen.dart';
 
 
-class FpSp extends StatelessWidget {
+class ResultStif extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
@@ -59,9 +59,9 @@ class _CartonCalculatorUIState extends State<CartonCalculatorUI> {
             child: Column(
               children: [
                 buildRowWithTwoFields('Ply', "${dataController.ply.value}"),
-                buildRowWithTwoFields('Size', '${dataController.length}x${dataController.width}x${dataController.height} inch'),
-                buildRowWithTwoFields('Sheet', '${dataController.cutSize}x${dataController.rollSize} inch'),
-                buildRowWithTwoFields('Quantity', '${dataController.quantity}'),
+                buildRowWithTwoFields('Size', '${dataController.lengthf}x${dataController.gazzetef}x${dataController.length2f}x${dataController.widthf} inch'),
+                buildRowWithTwoFields('Sheet', '${dataController.cutSize2f}x${dataController.rollSize2f} inch'),
+                // buildRowWithTwoFields('Quantity', '${dataController.quantity}'),
               ],
             ),
           ),

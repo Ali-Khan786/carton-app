@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_class_project/view/first_page_second_screen.dart';
-import 'package:flutter_class_project/view/first_page_third_screen.dart';
+// import 'package:flutter_class_project/view/first_page_third_screen.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -62,7 +62,12 @@ class _FirstPageState extends State<FirstPage> {
     double? height = double.tryParse(heightCon.text);
 
     if (width != null && height != null) {
-      return width + height;
+      if(width + height<22 || (width.toInt() + height.toInt()).isEven){
+        return width + height;
+      }
+      else{
+        return width + height +1;
+      }
     } else {
       return 0;
     }
@@ -74,14 +79,6 @@ class _FirstPageState extends State<FirstPage> {
         appBar: AppBar(
           title: Text("Home"),
           backgroundColor: Colors.green[100],
-          actions: [
-            IconButton(
-              icon: Icon(Icons.more_vert),
-              onPressed: () {
-                // Add menu functionality here
-              },
-            ),
-          ],
         ),
         body: SafeArea(
             child: SingleChildScrollView(
@@ -101,6 +98,7 @@ class _FirstPageState extends State<FirstPage> {
                         child: TextField(
                           keyboardType: TextInputType.number,
                           controller: lengthCon,
+                          onChanged: onTextChanged,
                           decoration: InputDecoration(
                             labelText: "Length",
                             border: OutlineInputBorder(),
@@ -112,6 +110,7 @@ class _FirstPageState extends State<FirstPage> {
                         child: TextField(
                           keyboardType: TextInputType.number,
                           controller: widthCon,
+                          onChanged: onTextChanged,
                           decoration: InputDecoration(
                             labelText: "Width",
                             border: OutlineInputBorder(),
